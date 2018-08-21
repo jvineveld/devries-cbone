@@ -9,12 +9,13 @@ namespace Xlii\CbOne\Controller\Json;
 /**
  * Contact index controller
  */
-class Single extends \Magento\Framework\App\Action\Action
+class Single extends \Xlii\CbOne\Controller\Json
 {
 
     public function execute()
     {
-        echo 1;
+        $sku = $this->getRequest()->getParam('sku');
+        echo json_encode($this->getAvailability(array($sku => 1)));
         die();
     }
 }
