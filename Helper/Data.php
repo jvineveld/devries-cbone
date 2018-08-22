@@ -37,6 +37,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
 
         $result=json_decode(curl_exec ($ch));
+        $returnArray = array();
         foreach($result->StockAvailability as $stock)
         {
             $returnArray[$stock->ProductId] = ($stock->QuantityAvailable24hrs > $productIds[$stock->ProductId]) ? 1 : 0;
