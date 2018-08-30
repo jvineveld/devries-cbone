@@ -43,6 +43,15 @@ define([
                     }
                     $(deliverySpan).html('<span>Vandaag voor 23:00 besteld, morgen in huis!</span>'); // if it's in stock we deliver it within 24 hours.
                 } else {
+                    var theForm = $('form[data-product-sku="'+prop+'"]'); // find the add to cart button which has the data-product-sku;
+                    if (theForm === undefined) { // we're in the checkout if it's undefined as said before.
+                        theForm = $('form[data-cart-item-id="'+prop+'"]')
+                    }
+                    if($('body').hasClass('catalog-product-view')) {
+                        var deliverySpan = $('.product-info-right .catalog-delivery');
+                    } else {
+                        var deliverySpan = $(theForm).parent().children('.catalog-delivery'); // find the delivery div so we can replace its HTML.
+                    }
                     $(deliverySpan).html('<span>Dit boek is helaas niet voorradig in de gevraagde hoeveelheid. De levering zal tussen de 4 en 5 dagen duren.</span>'); // if it's false it's not in stock and it will take more time to deliver.
                 }
             }
