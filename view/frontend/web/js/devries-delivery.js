@@ -52,7 +52,7 @@ define([
                     } else {
                         var deliverySpan = $(theForm).parent().children('.catalog-delivery'); // find the delivery div so we can replace its HTML.
                     }
-                    $(deliverySpan).html('<span>Dit boek is helaas niet voorradig in de gevraagde hoeveelheid. De levering zal tussen de 4 en 5 dagen duren.</span>'); // if it's false it's not in stock and it will take more time to deliver.
+                    $(deliverySpan).html('<span><strong>Levertijd:</strong> 3 tot 5 werkdagen.</span>'); // if it's false it's not in stock and it will take more time to deliver.
                 }
             }
         })
