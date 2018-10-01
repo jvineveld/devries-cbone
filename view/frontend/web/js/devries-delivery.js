@@ -8,8 +8,6 @@ define([
             var inStockMessage = config.inStock,
                 outOfStockMessage = config.outStock;
 
-            console.log(outOfStockMessage);
-
             $(document).ready(function() {
 
                 var url = window.location.origin + '/cbone/json/multiple'; // grab the base url and add the API location.
