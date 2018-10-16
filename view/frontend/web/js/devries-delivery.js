@@ -56,7 +56,7 @@ define([
                             } else {
                                 var deliverySpan = $(theForm).parent().children('.catalog-delivery'); // find the delivery div so we can replace its HTML.
                             }
-                            $(deliverySpan).html('<span><strong>Levertijd:</strong> ' + outOfStockMessage + '</span>'); // if it's false it's not in stock and it will take more time to deliver.
+                            $(deliverySpan).html(outOfStockMessage); // if it's false it's not in stock and it will take more time to deliver.
                         }
                     }
                 })
