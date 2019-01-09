@@ -11,12 +11,15 @@ define([
             $(document).ready(function() {
 
                 var url = window.location.origin + '/cbone/json/multiple'; // grab the base url and add the API location.
-                var allSkuForms = document.querySelectorAll('form[data-product-sku]'); // grab all the 'add to cart' buttons, because it has an SKU data attribute.
-                if (allSkuForms.length === 0) { // if you're in the checkout, the data attribute is named differently (yay for consistency, not)
-                    allSkuForms = document.querySelectorAll('.control.qty input[data-cart-item-id]'); // yup, that's the data attribute in the checkout.
+                var allSkuFormsNL = $('form[data-product-sku]'); // grab all the 'add to cart' buttons, because it has an SKU data attribute.
+                if (allSkuFormsNL.length === 0) { // if you're in the checkout, the data attribute is named differently (yay for consistency, not)
+                    allSkuForms = $('.control.qty input[data-cart-item-id]'); // yup, that's the data attribute in the checkout.
                 }
                 var skus = {}; // create an empty object in which we will store all the skus.
 
+                var allSkuForms = [];
+                for(var i=-1,l=allSkuFormsNL.length;++i!==l;allSkuForms[i]=allSkuFormsNL[i]);
+                
                 allSkuForms.forEach(function(sku) { // loop over all the addtocart buttons.
                     var amount = 1; // the initial amount you want to order is 1 (on the category catalog page)
                     if ($(sku).attr('value') > 1) { // however in the checkout you can change this to more and we need to send this in order to check if there's enough stock available.
