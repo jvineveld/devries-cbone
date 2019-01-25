@@ -6,7 +6,8 @@ define([
 
         return function(config) {
             var inStockMessage = config.inStock,
-                outOfStockMessage = config.outStock;
+                outOfStockMessage = JSON.parse(config.outStock.replace(/'/g, '"'));
+            console.log(outOfStockMessage);
 
             $(document).ready(function() {
 
@@ -59,7 +60,7 @@ define([
                             } else {
                                 var deliverySpan = $(theForm).parent().children('.catalog-delivery'); // find the delivery div so we can replace its HTML.
                             }
-                            $(deliverySpan).html(outOfStockMessage); // if it's false it's not in stock and it will take more time to deliver.
+                            $(deliverySpan).html(outOfStockMessage[prop]); // if it's false it's not in stock and it will take more time to deliver.
                         }
                     }
                 })
